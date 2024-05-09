@@ -3,14 +3,23 @@
 Island Perimeter module
 """
 
+
 def island_perimeter(grid):
     """
      returns the perimeter of the island described in grid
     :param grid:
     :return:
     """
-    area = 0
-    for row in grid + list(map(list, zip(*grid))):
-        for i1, i2 in zip([0] + row, row + [0]):
-            area += int(i1 != i2)
-    return area
+    a = 0
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if (grid[i][j] == 1):
+                if (i <= 0 or grid[i - 1][j] == 0):
+                    a += 1
+                if (i >= len(grid) - 1 or grid[i + 1][j] == 0):
+                    a += 1
+                if (j <= 0 or grid[i][j - 1] == 0):
+                    a += 1
+                if (j >= len(grid[i]) - 1 or grid[i][j + 1] == 0):
+                    a += 1
+    return a
